@@ -5,8 +5,10 @@ Feature: Kafka Ping Pong
 
   Scenario: Ping-Pong API returns response delegated to ping service
     When I make a request to ping
-    Then I receive a 200 status code and a non empty body returned
+    Then I receive a 200 status code
+    And the response has a message property with value ping
 
   Scenario: Ping-Pong API returns response delegated to pong service
     When I make a request to pong
-    Then I receive a 200 status code and a non empty body returned
+    Then I receive a 200 status code
+    And the response has a message property with value pong

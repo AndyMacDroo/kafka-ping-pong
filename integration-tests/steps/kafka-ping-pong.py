@@ -12,11 +12,16 @@ def step_impl(context):
 
 
 @when(u"I make a request to {path}")
-def step_impl(context, path):
-    context.request = requests.get('http://%s:%s/%s' % (os.getenv('API_HOST'), os.getenv('API_PORT'), path))
+def make_a_request(context, path):
+    context.response = requests.get('http://%s:%s/%s' % (os.getenv('API_HOST'), os.getenv('API_PORT'), path))
 
 
-@then(u"I receive a {status_code} status code and a non empty body returned")
-def step_impl(context, status_code):
-    assert context.request.status_code == int(status_code)
-    assert context.request.json() is not None
+@then(u"I receive a {status_code} status code")
+def receive_status_code(context, status_code):
+    assert context.response.status_code == int(status_code)
+
+
+@then(u"the response has a {property} property with value {value}")
+def response_has_property_and_value(context, property, value):
+    json_response = context.response.json()
+    assert json_response[property] == value

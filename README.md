@@ -6,6 +6,8 @@ This repository contains the source for an [Apache Kafka](https://kafka.apache.o
 ## Architecture
 ![Ping-Pong Architecture](assets/architecture.png)
 
+The service leverages the [Nameko](https://github.com/nameko/nameko) framework for Python microservice development.
+
 ## Pre-requisites
 
 * `docker`
@@ -31,7 +33,7 @@ The following command runs automated [`behave`](https://behave.readthedocs.io/en
 On success or failure, the `docker-compose` process will teardown services and return the exit code from the tests.
 
 ```shell script
-docker-compose up --abort-on-container-exit --exit-code-from integration-tests
+docker-compose up --abort-on-container-exit --exit-code-from integration-tests --build
 ```
 
 ## Running Demo
@@ -45,11 +47,11 @@ docker-compose up
 You can then perform a `GET` (or visit in a browser) to the following locations:
  * `http://localhost:8080/ping` 
  
-OR
+*OR*
 
  * `http://localhost:8080/pong`
  
-To start a round of ping-pong.
+To start a round of _Ping-Pong_.
 
 In the `docker-compose` terminal output, you should be able to see the `ping` and `pong` services consuming messages, 
 processing them and producing new messages onto their counterpart's topics:
