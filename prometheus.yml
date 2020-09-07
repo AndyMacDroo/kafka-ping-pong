@@ -1,0 +1,11 @@
+global:
+  scrape_interval: 1s
+  external_labels:
+    monitor: 'ping-pong'
+scrape_configs:
+  - job_name: 'ping'
+    static_configs:
+      - targets: [ 'ping:8000' ]
+  - job_name: 'pong'
+    static_configs:
+      - targets: [ 'pong:8000' ]

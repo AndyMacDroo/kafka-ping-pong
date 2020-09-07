@@ -73,3 +73,12 @@ pong_1       | Closing the Kafka producer with 9223372036.0 secs timeout.
 pong_1       | <BrokerConnection node_id=1001 host=kafka:9092 <connected> [IPv4 ('172.19.0.4', 9092)]>: Closing connection. 
 ping_1       | Handling Message: {'message': 'pong', 'uuid': 'e95db462-f0f1-11ea-81e4-0242ac130005', 'deliveries': 1}
 ```
+
+### Prometheus
+
+The PingPong services have been integrated with [Prometheus](https://prometheus.io/) to capture performance metrics. 
+While the demo is running, you can visit the Prometheus UI via the link below:
+
+* [Prometheus UI](http://localhost:9090/graph)
+
+![Ping-Pong Architecture](assets/prometheus.png)

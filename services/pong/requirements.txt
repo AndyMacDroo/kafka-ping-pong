@@ -3,6 +3,6 @@ kafka-python
 nameko
 nameko-kafka
 parameterized
-
+prometheus_client
 pymongo
 wrapt==1.11

@@ -22,9 +22,11 @@ services:
       - pong
   pong:
     build: "services/pong"
+    ports:
+      - "8001:8000"
     environment:
       KAFKA_BROKER_HOSTS: "kafka:9092"
-      MESSAGE_LIMIT: 10
+      MESSAGE_LIMIT: 20
       KAFKA_READ_TOPIC: "pong"
       KAFKA_WRITE_TOPIC: "ping"
     depends_on:
@@ -32,9 +34,11 @@ services:
         condition: service_healthy
   ping:
     build: "services/ping"
+    ports:
+      - "8000:8000"
     environment:
       KAFKA_BROKER_HOSTS: "kafka:9092"
-      MESSAGE_LIMIT: 10
+      MESSAGE_LIMIT: 20
       KAFKA_READ_TOPIC: "ping"
       KAFKA_WRITE_TOPIC: "pong"
     depends_on:
@@ -50,6 +54,16 @@ services:
       RABBITMQ_DEFAULT_VHOST: /
       RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER}
       RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS}
+  prom:
+    image: prom/prometheus:v2.1.0
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    command: '--config.file=/etc/prometheus/prometheus.yml'
+    ports:
+      - '9090:9090'
+    depends_on:
+        - ping
+        - pong
   zookeeper:
     image: zookeeper
     ports:
