@@ -1,0 +1,8 @@
+flask
+kafka-python
+nameko
+nameko-kafka
+parameterized
+
+pymongo
+wrapt==1.11
