@@ -1,6 +1,10 @@
 # Kafka Ping-Pong Demo
+ ![Build Badge](https://github.com/AndyMacDroo/kafka-ping-pong/workflows/tests/badge.svg)
+ 
+This repository contains the source for an [Apache Kafka](https://kafka.apache.org/) 2-service _Ping-Pong_ demo.
 
-This repository contains the source for an [Apache Kafka](https://kafka.apache.org/) 2 service _Ping-Pong_ demo.
+## Architecture
+![Ping-Pong Architecture](assets/architecture.png)
 
 ## Pre-requisites
 
@@ -40,8 +44,11 @@ docker-compose up
 
 You can then perform a `GET` (or visit in a browser) to the following locations:
  * `http://localhost:8080/ping` 
+ 
 OR
+
  * `http://localhost:8080/pong`
+ 
 To start a round of ping-pong.
 
 In the `docker-compose` terminal output, you should be able to see the `ping` and `pong` services consuming messages, 
