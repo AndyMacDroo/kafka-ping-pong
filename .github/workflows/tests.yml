@@ -14,6 +14,6 @@ jobs:
       - name: Unit Tests
         run: ./unit-tests.sh
         env:
-          - SHOULD_INSTALL_VIRTUALENV=true
+          SHOULD_INSTALL_VIRTUALENV: true
       - name: Integration Tests
         run: docker-compose up --abort-on-container-exit --exit-code-from integration-tests
