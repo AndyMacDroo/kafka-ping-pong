@@ -11,13 +11,13 @@ class TestService(unittest.TestCase):
 
     @patch("src.service.KafkaProducer", spec=True)
     @patch("src.service.uuid", spec=True)
-    def test_ping_writes_message_to_kafka_topic(self, mock_uuid, mock_kafka_producer):
+    def test_pong_writes_message_to_kafka_topic(self, mock_uuid, mock_kafka_producer):
         test_uuid = uuid.uuid1()
         mock_uuid.uuid1.return_value = test_uuid
         mock_kafka_producer_instance = mock_kafka_producer.return_value
         service = PongService()
-        service.ping()
-        mock_kafka_producer_instance.send.assert_called_once_with("", {'message': 'ping', 'uuid': str(test_uuid)})
+        service.pong()
+        mock_kafka_producer_instance.send.assert_called_once_with("", {'message': 'pong', 'uuid': str(test_uuid)})
 
     @patch("src.service.KafkaProducer", spec=True)
     def test_handle_message_with_invalid_message(self, mock_kafka_producer):
